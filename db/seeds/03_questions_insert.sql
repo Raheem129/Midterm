@@ -1,3 +1,5 @@
+
+
 INSERT INTO questions (quiz_id, question) VALUES (1, 'Which HTML tag is used to define the main heading of a document?');
 INSERT INTO questions (quiz_id, question) VALUES (1, 'What is the correct HTML tag for creating a hyperlink?');
 INSERT INTO questions (quiz_id, question) VALUES (1, 'Which HTML tag is used to define an unordered list?');
