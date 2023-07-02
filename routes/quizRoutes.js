@@ -20,7 +20,7 @@ router.post('/create', (req, res) => {
   // Perform any necessary operations to create the quiz
 
   // Determine the redirect URL based on the visibility option
-  let redirectUrl = '/quizzes'; // Default redirect to the quizzes page
+  let redirectUrl = '/quizzes/create'; // Default redirect to the quizzes page
 
   if (quizVisibility === 'private') {
     redirectUrl = '/myquizzes'; // Redirect to the My Quizzes page for private quizzes

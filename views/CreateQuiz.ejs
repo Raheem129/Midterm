@@ -9,7 +9,7 @@
 <body>
   <h1>Create Quiz</h1>
   <!-- Add the form to create a quiz -->
-  <form id="quizForm" action="/quizzes" method="POST">
+  <form id="quizForm" action="/quizzes/create" method="POST">
     <label for="title">Quiz Title:</label>
     <input type="text" id="title" name="title" required>
     <br>
@@ -43,16 +43,21 @@
     </div>
     <br>
     <button type="button" id="addQuestionButton">Add Question</button>
-    <button type="submit">Create Quiz</button>
+    <button type="button" id="createQuizButton">Create Quiz</button>
   </form>
+  <div id="quizContainer"></div> <!-- Container to display the created quiz -->
+  <div id="buttonsContainer"></div> <!-- Container for the buttons -->
   <script src="/script.js"></script> <!-- Include any necessary JavaScript files -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery -->
   <script>
     $(document).ready(function() {
-      $('#addQuestionButton').click(function() {
-        var questionNumber = $('.question').length;
+      var quizData = {
+        title: '',
+        questions: []
+      };
 
-        var questionHTML = `
+      function createQuestionHTML(questionNumber) {
+        return `
           <div class="question">
             <textarea class="questionText" name="questions[]" rows="4" required></textarea>
             <div class="choices">
@@ -79,12 +84,83 @@
             </div>
           </div>
         `;
+      }
+
+      function updateQuizData() {
+        quizData.title = $('#title').val();
+
+        $('.question').each(function(index) {
+          var questionText = $(this).find('.questionText').val();
+          var choices = {
+            A: $(this).find('input[name="choiceA[' + index + ']"]').val(),
+            B: $(this).find('input[name="choiceB[' + index + ']"]').val(),
+            C: $(this).find('input[name="choiceC[' + index + ']"]').val(),
+            D: $(this).find('input[name="choiceD[' + index + ']"]').val()
+          };
+
+          quizData.questions[index] = {
+            questionText: questionText,
+            choices: choices
+          };
+        });
+      }
+
+      function displayQuiz() {
+        var quizHTML = '<h2>' + quizData.title + '</h2>';
+
+        quizData.questions.forEach(function(question) {
+          quizHTML += '<div class="question">';
+          quizHTML += '<p>' + question.questionText + '</p>';
+          quizHTML += '<ul>';
+          for (var choice in question.choices) {
+            quizHTML += '<li>';
+            quizHTML += '<label>';
+            quizHTML += '<input type="radio" disabled>';
+            quizHTML += choice + ': ' + question.choices[choice];
+            quizHTML += '</label>';
+            quizHTML += '</li>';
+          }
+          quizHTML += '</ul>';
+          quizHTML += '</div>';
+        });
+
+        $('#quizContainer').html(quizHTML);
+        // Add the buttons
+        var buttonsHTML = `
+          <button type="button" id="makePublicButton">Make Quiz Public</button>
+          <button type="button" id="makePrivateButton">Make Quiz Private</button>
+        `;
+        $('#buttonsContainer').html(buttonsHTML);
+      }
+
+      $('#addQuestionButton').click(function() {
+        var questionNumber = $('.question').length;
+
+        var questionHTML = createQuestionHTML(questionNumber);
 
         $('#questionsContainer').append(questionHTML);
+      });
+
+      $('#createQuizButton').click(function() {
+        updateQuizData();
+        displayQuiz();
+      });
+
+      $('#makePublicButton').click(function() {
+        // Redirect to the Quizzes page
+        window.location.href = "/quizzes";
+      });
+
+      $('#makePrivateButton').click(function() {
+        // Redirect to the My Quizzes page
+        window.location.href = "/my-quizzes";
       });
     });
   </script>
 </body>
 </html>
+
+
+
 
 
