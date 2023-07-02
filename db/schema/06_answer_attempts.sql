@@ -1,5 +1,6 @@
 
 
+
 DROP TABLE IF EXISTS answer_attempts CASCADE;
 CREATE TABLE answer_attempts (
   id SERIAL PRIMARY KEY NOT NULL,
