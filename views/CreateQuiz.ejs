@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Quiz</title>
+  <link rel="stylesheet" href="/styles.css"> <!-- Include any necessary CSS files -->
+</head>
+<body>
+  <h1>Create Quiz</h1>
+  <!-- Add the form to create a quiz -->
+  <form id="quizForm" action="/quizzes" method="POST">
+    <label for="title">Quiz Title:</label>
+    <input type="text" id="title" name="title" required>
+    <br>
+    <label>Questions:</label>
+    <div id="questionsContainer">
+      <div class="question">
+        <textarea class="questionText" name="questions[]" rows="4" required></textarea>
+        <div class="choices">
+          <label>
+            <input type="radio" name="correctAnswer[0]" value="A" required>
+            Choice A:
+            <input type="text" name="choiceA[0]" required>
+          </label>
+          <label>
+            <input type="radio" name="correctAnswer[0]" value="B" required>
+            Choice B:
+            <input type="text" name="choiceB[0]" required>
+          </label>
+          <label>
+            <input type="radio" name="correctAnswer[0]" value="C" required>
+            Choice C:
+            <input type="text" name="choiceC[0]" required>
+          </label>
+          <label>
+            <input type="radio" name="correctAnswer[0]" value="D" required>
+            Choice D:
+            <input type="text" name="choiceD[0]" required>
+          </label>
+        </div>
+      </div>
+    </div>
+    <br>
+    <button type="button" id="addQuestionButton">Add Question</button>
+    <button type="submit">Create Quiz</button>
+  </form>
+  <script src="/script.js"></script> <!-- Include any necessary JavaScript files -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery -->
+  <script>
+    $(document).ready(function() {
+      $('#addQuestionButton').click(function() {
+        var questionNumber = $('.question').length;
+
+        var questionHTML = `
+          <div class="question">
+            <textarea class="questionText" name="questions[]" rows="4" required></textarea>
+            <div class="choices">
+              <label>
+                <input type="radio" name="correctAnswer[${questionNumber}]" value="A" required>
+                Choice A:
+                <input type="text" name="choiceA[${questionNumber}]" required>
+              </label>
+              <label>
+                <input type="radio" name="correctAnswer[${questionNumber}]" value="B" required>
+                Choice B:
+                <input type="text" name="choiceB[${questionNumber}]" required>
+              </label>
+              <label>
+                <input type="radio" name="correctAnswer[${questionNumber}]" value="C" required>
+                Choice C:
+                <input type="text" name="choiceC[${questionNumber}]" required>
+              </label>
+              <label>
+                <input type="radio" name="correctAnswer[${questionNumber}]" value="D" required>
+                Choice D:
+                <input type="text" name="choiceD[${questionNumber}]" required>
+              </label>
+            </div>
+          </div>
+        `;
+
+        $('#questionsContainer').append(questionHTML);
+      });
+    });
+  </script>
+</body>
+</html>
+
+
