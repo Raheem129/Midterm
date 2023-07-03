@@ -1,0 +1,28 @@
+<div id="quizzesContainer">
+  <% if (quizzes.length === 0) { %>
+    <p>No quizzes available.</p>
+  <% } else { %>
+    <% for (let i = 0; i < quizzes.length; i++) { %>
+      <div class="quiz">
+        <h2><%= quizzes[i].title %></h2>
+        <ul>
+          <% for (let j = 0; j < quizzes[i].questions.length; j++) { %>
+            <li>
+              <strong>Question:</strong> <%= quizzes[i].questions[j].questionText %><br>
+              <strong>Choices:</strong>
+              <ul>
+                <% const choices = quizzes[i].questions[j].choices; %>
+                <% for (const choice in choices) { %>
+                  <li><%= choice %>: <%= choices[choice] %></li>
+                <% } %>
+              </ul>
+            </li>
+          <% } %>
+        </ul>
+      </div>
+    <% } %>
+  <% } %>
+
+</div>
+
+

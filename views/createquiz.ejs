@@ -47,7 +47,8 @@
   </form>
   <div id="quizContainer"></div> <!-- Container to display the created quiz -->
   <div id="buttonsContainer"></div> <!-- Container for the buttons -->
-  <script src="/script.js"></script> <!-- Include any necessary JavaScript files -->
+  <script src="public/scripts/script.js"></script>
+ <!-- Include any necessary JavaScript files -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery -->
   <script>
     $(document).ready(function() {
@@ -131,6 +132,26 @@
           <button type="button" id="makePrivateButton">Make Quiz Private</button>
         `;
         $('#buttonsContainer').html(buttonsHTML);
+
+        $('#makePublicButton').click(function() {
+          $.ajax({
+            type: 'POST',
+            url: '/quizzes/create',
+            data: $('#quizForm').serialize(),
+            success: function(response) {
+              // Redirect to the "/quizzes" page
+              window.location.href = '/quizzes';
+            },
+            error: function(error) {
+              console.log('Error:', error);
+            }
+          });
+        });
+
+        $('#makePrivateButton').click(function() {
+          // Redirect to the My Quizzes page
+          window.location.href = "/my-quizzes";
+        });
       }
 
       $('#addQuestionButton').click(function() {
@@ -145,20 +166,11 @@
         updateQuizData();
         displayQuiz();
       });
-
-      $('#makePublicButton').click(function() {
-        // Redirect to the Quizzes page
-        window.location.href = "/quizzes";
-      });
-
-      $('#makePrivateButton').click(function() {
-        // Redirect to the My Quizzes page
-        window.location.href = "/my-quizzes";
-      });
     });
   </script>
 </body>
 </html>
+
 
 
 
