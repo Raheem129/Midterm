@@ -1,7 +1,7 @@
 // load .env data into process.env
 require('dotenv').config();
 const quizRoutes = require('./routes/quizRoutes');
-
+const loginRoutes = require('./routes/loginRoutes');
 
 // Web server config
 const sassMiddleware = require('./lib/sass-middleware');
@@ -41,6 +41,7 @@ app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/quizzes', quizRoutes);
+app.use('/quizzes', loginRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -50,6 +51,7 @@ app.use('/quizzes', quizRoutes);
 app.get('/', (req, res) => {
   res.render('index');
 });
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
