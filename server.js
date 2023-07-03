@@ -1,5 +1,7 @@
 // load .env data into process.env
 require('dotenv').config();
+const quizRoutes = require('./routes/quizRoutes');
+
 
 // Web server config
 const sassMiddleware = require('./lib/sass-middleware');
@@ -38,6 +40,7 @@ const usersRoutes = require('./routes/users');
 app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
+app.use('/quizzes', quizRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
