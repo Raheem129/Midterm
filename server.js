@@ -1,6 +1,7 @@
 // load .env data into process.env
 require('dotenv').config();
 const quizRoutes = require('./routes/quizRoutes');
+const registerRoutes = require('./routes/registerRoutes')
 
 
 // Web server config
@@ -41,6 +42,7 @@ app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/quizzes', quizRoutes);
+app.use('/register',registerRoutes)
 // Note: mount other resources here, using the same pattern above
 
 // Home page

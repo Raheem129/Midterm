@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <title> Registration - Quizzy </title>
   <meta charset="UTF-8" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <link rel="stylesheet" href="/styles/register.css">
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 </head>
 <body>
   <%- include('partials/_header') %>
+  <h1> Registration - Quizzy </h1>
   <main>
-    <h1>Register</h1>
+    <h3>Register a New User</h3>
 
-    <form action="/Quizzes/register"> method= "POST">
+    <form action="/register/Register" method="POST">
 
       <input type="email" placeholder="Email" name="email" />
       
       <input type="password" placeholder="Password" name="password" />
+
+      <span><small>Already have an account? <a href="/login"> Login</a></span></small>
       
-      <button type="submit">Register</button>
+      <button type="submit" class=" btn btn-info">Register</button>
 
     </form>
 
