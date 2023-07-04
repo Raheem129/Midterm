@@ -4,6 +4,7 @@ const quizRoutes = require('./routes/quizRoutes');
 const registerRoutes = require('./routes/registerRoutes')
 const cookieSession = require("cookie-session")
 
+const loginRoutes = require('./routes/loginRoutes');
 
 // Web server config
 const sassMiddleware = require('./lib/sass-middleware');
@@ -49,6 +50,7 @@ app.use(cookieSession({
   keys: ['key1', 'key2']
 }));
 app.use(express.json());
+app.use('/quizzes', loginRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -58,6 +60,7 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.render('index');
 });
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
