@@ -1,4 +1,3 @@
-const { Template } = require('ejs');
 const express = require('express');
 const router = express.Router();
 const db = require('../db/connection');
@@ -12,16 +11,15 @@ router.post("/Register", (req, res) => {
     const user = req.body;
       db.addUser(user)
       .then((user) => {
+        console.log(user);
         if (!user) {
           return res.send({ error: "error" });
         }
-  
         req.session.userId = user.id;
-        res.send("🤗");
+        //res.redirect("/login")
       })
       .catch((e) => res.send(e));
   });
-
 
 //router.post('/Register',(req, res) => {
   //const {name, email, password } = req.body;
@@ -33,5 +31,4 @@ router.post("/Register", (req, res) => {
   //}
 //})
 
-
-module.exports = router,db;
+module.exports = router, db;

@@ -2,6 +2,7 @@
 require('dotenv').config();
 const quizRoutes = require('./routes/quizRoutes');
 const registerRoutes = require('./routes/registerRoutes')
+const cookieSession = require("cookie-session")
 
 
 // Web server config
@@ -43,6 +44,11 @@ app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/quizzes', quizRoutes);
 app.use('/register',registerRoutes)
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2']
+}));
+app.use(express.json());
 // Note: mount other resources here, using the same pattern above
 
 // Home page
