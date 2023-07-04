@@ -24,37 +24,37 @@ router.get('/', (req, res) => {
 
 // Route for handling form submission and creating the quiz
 router.post('/create', (req, res) => {
-// Process the form data and create the quiz
-const quizTitle = req.body.title;
-const quizQuestions = req.body.questions;
-console.log('Quiz Title:', quizTitle);
-console.log('Quiz Questions:', quizQuestions);
-const choices = ['A', 'B', 'C', 'D'];
+  // Process the form data and create the quiz
+  const quizTitle = req.body.title;
+  const quizQuestions = req.body.questions;
+  console.log('Quiz Title:', quizTitle);
+  console.log('Quiz Questions:', quizQuestions);
+  const choices = ['A', 'B', 'C', 'D'];
 
-const quizData = {
-  title: quizTitle,
-  questions: [],
-};
+  const quizData = {
+    title: quizTitle,
+    questions: [],
+  };
 
-for (let i = 0; i < quizQuestions.length; i++) {
-  const questionText = quizQuestions[i];
-  const questionChoices = [];
+  for (let i = 0; i < quizQuestions.length; i++) {
+    const questionText = quizQuestions[i];
+    const questionChoices = [];
 
-  for (const choice of choices) {
-    const choiceText = req.body[`choice${choice}[${i}]`];
-    questionChoices.push(choiceText);
+    for (const choice of choices) {
+      const choiceText = req.body[`choice${choice}[${i}]`];
+      questionChoices.push(choiceText);
+    }
+
+    quizData.questions.push({
+      questionText,
+      choices: questionChoices,
+    });
   }
-
-  quizData.questions.push({
-    questionText,
-    choices: questionChoices,
-  });
-}
 
   const quizVisibility = req.body.visibility; // Get the selected visibility option
 
   // Save the quiz data to the database
-  db.query('INSERT INTO quizzes (title, questions) VALUES ($1, $2) RETURNING *', [quizData.title, JSON.stringify(quizData.questions)])
+  db.query('INSERT INTO quizzes (title, questions, visibility) VALUES ($1, $2, $3) RETURNING *', [quizData.title, JSON.stringify(quizData.questions), quizVisibility])
     .then((result) => {
       const savedQuiz = result.rows[0]; // Retrieve the saved quiz from the query result
       // Redirect to the "/quizzes" page
