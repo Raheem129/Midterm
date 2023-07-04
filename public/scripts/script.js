@@ -12,7 +12,7 @@ quizForm.addEventListener('submit', (event) => {
     .then((response) => response.json())
     .then((data) => {
       // Handle the response from the server
-      console.log('Received Data:', data); // You can do further processing or display a success message
+      console.log(data); // You can do further processing or display a success message
     })
     .catch((error) => {
       console.error('Error:', error); // Handle any errors that occurred during the fetch request

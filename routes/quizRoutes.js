@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db/connection');
+const { db, getJoinedData } = require('../db/connection');
 
 // Route for rendering the create quiz page
 router.get('/create', (req, res) => {
@@ -19,6 +19,21 @@ router.get('/', (req, res) => {
     .catch((err) => {
       console.error('Error fetching quizzes from the database:', err);
       res.render('quizzes', { quizzes: [] });
+    });
+});
+
+// Route for displaying the joined data
+router.get('/joined', (req, res) => {
+  // Fetch the joined data from the database
+  getJoinedData()
+    .then((result) => {
+      const joinedData = result;
+      console.log('Joined Data:', JSON.stringify(joinedData)); // Add this line to check the joined data in the console
+      res.render('joined', { joinedData });
+    })
+    .catch((err) => {
+      console.error('Error fetching joined data from the database:', err);
+      res.render('joined', { joinedData: [] });
     });
 });
 
@@ -54,7 +69,11 @@ router.post('/create', (req, res) => {
   const quizVisibility = req.body.visibility; // Get the selected visibility option
 
   // Save the quiz data to the database
-  db.query('INSERT INTO quizzes (title, questions, visibility) VALUES ($1, $2, $3) RETURNING *', [quizData.title, JSON.stringify(quizData.questions), quizVisibility])
+  db.query('INSERT INTO quizzes (title, questions, visibility) VALUES ($1, $2, $3) RETURNING *', [
+    quizData.title,
+    JSON.stringify(quizData.questions),
+    quizVisibility,
+  ])
     .then((result) => {
       const savedQuiz = result.rows[0]; // Retrieve the saved quiz from the query result
       // Redirect to the "/quizzes" page
