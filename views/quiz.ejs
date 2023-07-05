@@ -1,66 +1,59 @@
+<!-- PAGE WHICH SHOWS A QUIZ AND ALLOWS YOU TO COMPLETE IT (PAGE TO TAKE THE ACTUAL QUIZ) -->
+
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Quizzy - Quiz</title>
+    <link href="/docs/owl.png" rel="icon" type="image/x-icon" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, IE=edge">
-  <title>Quizzy - Quiz</title>
-   <!-- SCRIPTS-->
+    <meta charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
 
-   <script src="/vendor/jquery-3.0.0.js"></script>
+    <!-- EXTERNAL STYLESHEETS -->
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@700&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+
+    <!-- SCRIPTS-->
+
+    <script src="/vendor/jquery-3.0.0.js"></script>
+    <script defer src="/scripts/quiz.js"></script>
+
   </head>
-  <!--This page shows the quiz and will alow you to take it.-->>
-  <body>
+<body>
   <%- include('partials/_header') %>
-    <main>
 
-      <div class="quiz_details">
-        <h1>
-          <%= quiz.title %>
-        </h1>
-        <p class="author">By <%= quiz.author%>
-        </p>
-        <p class="description">
-          <%= quiz.description %>
-        </p>
-      </div>
-
-      <div class="quiz_container" data-id="<%= quiz.id %>">
-
-        <% for (let question in quiz.questions) { %>
-
-        <article class="question_card">
-
-          <header><p><%= question %>. <%= quiz.questions[question].text %></p></header>
-
+  <main>
+    <div class="quiz_details">
+      <h1><%= quiz.title %></h1>
+      <p class="author">By <%= quiz.author%></p>
+      <p class ="description"><%= quiz.description %></p>
+    </div>
+    <div class="quiz_container" data-id="<%= quiz.id %>">
+      <% for (question in quiz.questions) { %>
+        <article class = question_card>
+          <header>
+            <p><%= question %>. <%= quiz.questions[question].text %></p>
+          </header>
           <ul>
-            <% for (let answer of quiz.questions[question].answers) { %>
+            <% for (answer of quiz.questions[question].answers) { %>
+              <li>
+                <input type="radio" name="<%= question %>" data-id="<%= answer.id %>">
+                <%= answer.text %>
+              </li>
+            <% } %>
+          </ul>
+        </article>
+      <% } %>
+    </div>
+    <div class="quiz_footer">
+      <button id="quiz_submit" class="quiz_submit">Submit</button>
+    </div>
+  </main>
 
-            <header>
-              <p>
-                <%= question %>. <%= quiz.questions[question].text %>
-              </p>
-            </header>
-
-            <ul>
-              <% for (let answer of quiz.questions[question].answers) { %>
-
-                <li>
-                  <input type="radio" name="<%= question %>" data-id="<%= answer.id %>">
-                  <%= answer.text %>
-                </li>
-
-                <% } %>
-            </ul>
-
-          </article>
-          <% } %>
-      </div>
-
-      <div class="footer_quiz">
-        <button id="submit_quiz" class="submit_quiz"> Submit </button>
-      </div>
-
-    </main>
-  </body>
+</body>
 </html>
