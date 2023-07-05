@@ -14,13 +14,8 @@ router.get('/new', (req, res) => {
   }
 
   getUserById(userId).then(user => {
-<<<<<<< HEAD
     const templateVars = {userName: user.name};
     res.render('form_quiz', templateVars);
-=======
-    const templateVars = { userName: user.name };
-    res.render('quiz_form', templateVars);
->>>>>>> b78bf3ce9f34652aa4a285fc7b5bf5ac6a4f33a9
   });
 });
 

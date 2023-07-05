@@ -5,21 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, IE=edge">
   <title>Quizzy - Quiz</title>
-<<<<<<< HEAD
    <!-- SCRIPTS-->
 
    <script src="/vendor/jquery-3.0.0.js"></script>
   </head>
   <!--This page shows the quiz and will alow you to take it.-->>
   <body>
-=======
-
-  <script defer src="/scripts/quiz.js"></script>
-</head>
-<!--This page shows the quiz and will alow you to take it.-->>
-
-<body>
->>>>>>> b78bf3ce9f34652aa4a285fc7b5bf5ac6a4f33a9
   <%- include('partials/_header') %>
     <main>
 
@@ -38,16 +29,12 @@
 
         <% for (let question in quiz.questions) { %>
 
-<<<<<<< HEAD
         <article class="question_card">
 
           <header><p><%= question %>. <%= quiz.questions[question].text %></p></header>
 
           <ul>
             <% for (let answer of quiz.questions[question].answers) { %>
-=======
-          <article class="question_card">
->>>>>>> b78bf3ce9f34652aa4a285fc7b5bf5ac6a4f33a9
 
             <header>
               <p>
@@ -75,11 +62,5 @@
       </div>
 
     </main>
-<<<<<<< HEAD
   </body>
 </html>
-=======
-</body>
-
-</html>
->>>>>>> b78bf3ce9f34652aa4a285fc7b5bf5ac6a4f33a9
