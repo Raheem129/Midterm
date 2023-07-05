@@ -5,7 +5,7 @@ $(() => {
     addQuestion();
   }
 
-  $('#quiz_form').on('submit', (event) => {
+  $('#form_quiz').on('submit', (event) => {
     event.preventDefault();
     submitQuiz($(event.currentTarget));
   });
