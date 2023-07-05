@@ -1,17 +1,11 @@
 // load .env data into process.env
 require('dotenv').config();
-const quizRoutes = require('./routes/quizRoutes');
-const registerRoutes = require('./routes/registerRoutes')
-const cookieSession = require("cookie-session")
-
-const loginRoutes = require('./routes/loginRoutes');
-const registerRoutes = require('./routes/registerRoutes');
-const cookieSession = require('cookie-session');
 
 // Web server config
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
+const cookieSession = require('cookie-session');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -32,46 +26,40 @@ app.use(
   })
 );
 app.use(express.static('public'));
+app.use(cookieSession({
+  keys: [
+    'lk0XZ4Bdelb1tb44R5g0tmN1BCedJfjnChqGcqlD',
+    'RzQDTBORGRpGOtK5y9mPzVtC4ACN1zGupPdChImE',
+    'KjgvMzBPij1DC0zA8FiRYA1mmF23b7zR7yetZolS',
+    'oOx1XZeGztQLaBWvZkGvucZlAzGn0CE9UildgknM',
+    'kAmmDcHFOeHKbaNEx7szNF8wfIButWDoT2QpcPRw',
+    'JkH0RKsrU9pVRfG079pcASkokW80sDbAgU7zC3hW',
+    'zcKZ4otbNu0IWzZoWGUmppSmypgnxzlMuFGzW6As',
+    'FVHER4AxdGwI5HyDgfqhHw2Jpnuv9jg10RcufEJQ',
+    'gpbaPkpKV13Crq3lygfj4unulGKd3Jo7omPYBw1x',
+    'kRASoBIqhlZXsKFRIqVJedMeyv6DlDDvNZXLcyxF',
+  ]
+}));
 
 // Separated Routes for each Resource
-// Note: Feel free to replace the example routes below with your own
-const userApiRoutes = require('./routes/users-api');
-const widgetApiRoutes = require('./routes/widgets-api');
-const usersRoutes = require('./routes/users');
+const userRoutes = require('./routes/users');
+const apiRoutes = require('./routes/api');
+
 
 // Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
-// Note: Endpoints that return data (eg. JSON) usually start with `/api`
-app.use('/api/users', userApiRoutes);
-app.use('/api/widgets', widgetApiRoutes);
-app.use('/users', usersRoutes);
-app.use('/quizzes', quizRoutes);
-app.use('/register',registerRoutes)
-app.use(cookieSession({
-  name: 'session',
-  keys: ['key1', 'key2']
-}));
-app.use(express.json());
-app.use('/quizzes', loginRoutes);
-app.use('/register', registerRoutes);
-
-app.use(
-  cookieSession({
-    name: 'session',
-    keys: ['key1', 'key2'],
-  })
-);
-app.use(express.json());
-
-// Note: mount other resources here, using the same pattern above
+app.use('/api', apiRoutes);
+app.use('/quizapp', userRoutes);
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
+
 app.get('/', (req, res) => {
-  res.render('index');
+  res
+    .status(302)
+    .redirect('/quizapp')
 });
 
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
+  console.log(`Quizzer App listening on port ${PORT}`);
 });

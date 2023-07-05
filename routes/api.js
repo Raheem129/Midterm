@@ -4,7 +4,7 @@ const router = express.Router();
 const { getQuizzes } = require('../db/queries/get_quizzes');
 
 // Import separate route handlers
-const quizRoutes = require('./api_quiz');
+const quizRoutes = require('./quiz_api');
 const loginRoutes = require('./api_login');
 const logoutRoute = require('./api_logout');
 
