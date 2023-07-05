@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 
-// attempt page will be displayed with user attempt
+//Attempt page will be displayed with user attempt
 const getAttempt = require ("../db/queries/get_attempts");
 const getUserByID = require ("../db/queries/users");
 
@@ -20,3 +20,5 @@ promise.all([getUserByID(userId), getAttempt({url}),])
 .catch(error => console.log(error));
 
 });
+
+module.exports = router;
