@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-  <title>Home Page</title>
+  <title>Quiz App</title>
+  <!--img or app sysmbol will goes here -->
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,6 +20,16 @@
 
 <body>
   <%- include('partials/_header') %>
+    <from action="/api" method="GET" class="quiz-sort">
+      <select name="quiz_sort" id="quiz_sort">
+        <option value="disable selected">Sort Quizzes</option>
+        <option value="recent">Recent</option>
+      </select>
+    </from>
+
+    <main class="quiz_container index_container">
+    </main>
+
 </body>
 
 </html>
