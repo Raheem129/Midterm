@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, IE=edge">
-    <title> Quizzy - Attempt </title>
 
-     <!-- SCRIPTS-->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, IE=edge">
+  <title> Quizzy - Attempt </title>
 
-  <script src="/vendor/jquery-3.0.0.js"></script>
-  </head>
+  <script defer src="/scripts/copy_link.js"></script>
+
+</head>
 <!--this will show the attempt of the quiz that is taken.-->>
 
 <body>
@@ -67,14 +67,9 @@
             value="http://localhost:8080/quizzy/attempt/<%= attempt.url %>">
         </button>
 
-  <button class="c_b">
-    <span>Copy Attempt Link</span>&nbsp; &nbsp;<input class="copy_input"
-    value="http://localhost:8080/quizzy/attempt/<%= attempt.url %>">
-  </button>
+      </div>
 
     </main>
 </body>
 
-   </main>
-  </body>
 </html>
