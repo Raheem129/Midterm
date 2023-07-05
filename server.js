@@ -1,7 +1,7 @@
 // load .env data into process.env
 require('dotenv').config();
 const quizRoutes = require('./routes/quizRoutes');
-const loginRoutes = require('./routes/loginRoutes');
+const loginRoutes = require('./routes/api_login');
 
 // Web server config
 const sassMiddleware = require('./lib/sass-middleware');
