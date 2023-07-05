@@ -1,7 +1,12 @@
 // load .env data into process.env
 require('dotenv').config();
 const quizRoutes = require('./routes/quizRoutes');
-const loginRoutes = require('./routes/api_login');
+const registerRoutes = require('./routes/registerRoutes')
+const cookieSession = require("cookie-session")
+
+const loginRoutes = require('./routes/loginRoutes');
+const registerRoutes = require('./routes/registerRoutes');
+const cookieSession = require('cookie-session');
 
 // Web server config
 const sassMiddleware = require('./lib/sass-middleware');
@@ -41,17 +46,31 @@ app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/quizzes', quizRoutes);
+app.use('/register',registerRoutes)
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2']
+}));
+app.use(express.json());
 app.use('/quizzes', loginRoutes);
+app.use('/register', registerRoutes);
+
+app.use(
+  cookieSession({
+    name: 'session',
+    keys: ['key1', 'key2'],
+  })
+);
+app.use(express.json());
+
 // Note: mount other resources here, using the same pattern above
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
-
 app.get('/', (req, res) => {
   res.render('index');
 });
-
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
