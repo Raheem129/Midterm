@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
   const userId = req.session.userId;
 
   if (!userId) {
-    return res.redirect('/quizzy/login');
+    return res.redirect('/quizapp/login');
   }
   Promise.all([ getAccountAttempts(userId), getAccountQuizzes(userId), getUserById(userId), ])
 

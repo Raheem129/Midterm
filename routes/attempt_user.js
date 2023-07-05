@@ -14,7 +14,7 @@ promise.all([getUserByID(userId), getAttempt({url}),])
 
 .then(([user, attempt]) => {
   const templateVars = { attempt, userName: (!user ? '' : user.name) };
-  res.render('quiz_attempt', templateVars);
+  res.render('attempt_quiz', templateVars);
 })
 
 .catch(error => console.log(error));
