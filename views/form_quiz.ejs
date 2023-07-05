@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, IE=edge" >
+  <Title>Quizzy - New Quiz</Title>
+</head>
+<body>
+  <%- include('partials/_header') %>
+  <main>
+
+    <h1>Create Your New Quiz</h1>
+  <form id="form_quiz" action="/api" method="POST">
+    <fieldset class="details_quiz">
+      <legend>Quiz Details</legend>
+
+    <div class="question_form_main">
+      <label for="quiz_title">Quiz Title</label>
+      <input id="quiz_title" type="text" name="quiz_title"/>
+      
+      <label for="description_quiz">Quiz Description</label>
+      <textarea id="description_quiz" name="description_quiz" rows="3"></textarea>
+      
+      <label for="quiz_private">Quiz Visibility</label>
+      <p>When you opt for the "public" setting, your quiz will be made visible to all users. On the other hand,
+        if you pick "private" setting, only those who possess the quiz link will have the ability to view and access the quiz. </p>
+      
+      <div class="public_private">
+        <div>
+          <input type="radio" id="public" name="public_quiz" value="FALSE">
+          <label for="public">Public</label>
+        </div>
+        <div>
+          <input type="radio" id="private" name="private_quiz" value="TRUE">
+          <label for="private">Private</label>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <div id="questions_form"></div>
+  
+  <div id="footer_form">
+    <button id="submit" type="submit">Create Quiz!</button>
+    <button class="add_question">Add Question</button>
+
+  </div>
+
+   </form>
+  </main>
+</body>
+</html>

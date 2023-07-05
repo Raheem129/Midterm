@@ -1,6 +1,9 @@
 // load .env data into process.env
 require('dotenv').config();
 const quizRoutes = require('./routes/quizRoutes');
+const registerRoutes = require('./routes/registerRoutes')
+const cookieSession = require("cookie-session")
+
 const loginRoutes = require('./routes/loginRoutes');
 const registerRoutes = require('./routes/registerRoutes');
 const cookieSession = require('cookie-session');
@@ -43,6 +46,12 @@ app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/quizzes', quizRoutes);
+app.use('/register',registerRoutes)
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2']
+}));
+app.use(express.json());
 app.use('/quizzes', loginRoutes);
 app.use('/register', registerRoutes);
 
