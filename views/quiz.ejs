@@ -5,12 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, IE=edge">
   <title>Quizzy - Quiz</title>
+   <!-- SCRIPTS-->
 
-  <script defer src="/scripts/quiz.js"></script>
-</head>
-<!--This page shows the quiz and will alow you to take it.-->>
-
-<body>
+   <script src="/vendor/jquery-3.0.0.js"></script>
+  </head>
+  <!--This page shows the quiz and will alow you to take it.-->>
+  <body>
   <%- include('partials/_header') %>
     <main>
 
@@ -29,7 +29,12 @@
 
         <% for (let question in quiz.questions) { %>
 
-          <article class="question_card">
+        <article class="question_card">
+
+          <header><p><%= question %>. <%= quiz.questions[question].text %></p></header>
+
+          <ul>
+            <% for (let answer of quiz.questions[question].answers) { %>
 
             <header>
               <p>
@@ -57,6 +62,5 @@
       </div>
 
     </main>
-</body>
-
+  </body>
 </html>

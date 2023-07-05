@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, IE=edge" >
   <Title>Quizzy - New Quiz</Title>
+
+    <!-- SCRIPTS-->
+    <script src="/vendor/jquery-3.0.0.js"></script>
+    <script defer src="/scripts/form_quiz.js"></script>
 </head>
 <body>
   <%- include('partials/_header') %>
@@ -17,14 +21,14 @@
     <div class="question_form_main">
       <label for="quiz_title">Quiz Title</label>
       <input id="quiz_title" type="text" name="quiz_title"/>
-      
+
       <label for="description_quiz">Quiz Description</label>
       <textarea id="description_quiz" name="description_quiz" rows="3"></textarea>
-      
+
       <label for="quiz_private">Quiz Visibility</label>
       <p>When you opt for the "public" setting, your quiz will be made visible to all users. On the other hand,
         if you pick "private" setting, only those who possess the quiz link will have the ability to view and access the quiz. </p>
-      
+
       <div class="public_private">
         <div>
           <input type="radio" id="public" name="public_quiz" value="FALSE">
@@ -39,7 +43,7 @@
   </fieldset>
 
   <div id="questions_form"></div>
-  
+
   <div id="footer_form">
     <button id="submit" type="submit">Create Quiz!</button>
     <button class="add_question">Add Question</button>
