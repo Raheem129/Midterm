@@ -1,11 +1,11 @@
-const db = require('../connection'); // Connect to the database
+const db = require('../connection'); //connect to DB
 
 /**
- * Checks if a user is the owner of a quiz.
- * @param {String} userId User ID to check ownership for.
- * @param {String} quizId Quiz ID to check ownership for.
- * @return {Promise} A promise that resolves to true or false. True means the user owns the quiz, and false means they don't.
- */
+   * Checks to see if user is owner of quiz
+   * @param {String} userId Id of the user to test for ownership
+   * @param {String} quizId Id of the quiz to test for ownership
+   * @return {Promise} Promise that resolves to true or false. True means the user owns the quiz, and false means that they don't
+   */
 const checkUserPermission = function(userId, quizId) {
   let query = `
     SELECT quizzes.id
@@ -24,11 +24,11 @@ const checkUserPermission = function(userId, quizId) {
 };
 
 /**
- * Changes the privacy of a quiz.
- * @param {String} quizId ID of the quiz to change the privacy of.
- * @param {String} request If 'Private', the quiz will be made private. Otherwise, it will be made public.
+ * Changes privacy of quiz
+ * @param {String} quizId Id of the quiz to change privacy of
+ * @param {String} request If 'Private' will make quiz private, otherwise will make it public
  * @return {Promise}
- */
+ * */
 const changePrivacy = function(quizId, request) {
   const query = `
     UPDATE quizzes
@@ -40,10 +40,10 @@ const changePrivacy = function(quizId, request) {
 };
 
 /**
- * Deletes a quiz.
- * @param {String} quizId ID of the quiz to delete.
+ * Deletes quiz
+ * @param {String} quizId Id of the quiz to delete
  * @return {Promise}
- */
+ * */
 const deleteQuiz = function(quizId) {
   const query = `
     DELETE FROM quizzes WHERE id = $1;

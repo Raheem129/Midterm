@@ -1,16 +1,12 @@
-// Import necessary modules and dependencies
 const express = require('express');
-const router = express.Router();
+const router  = express.Router();
 const bcrypt = require('bcryptjs');
 
 const { getUserByEmail, addUser } = require('../db/queries/users');
 
-// POST route for user login
+// Log in route
 router.post('/', (req, res) => {
-  // Extract email and password from request body
   const { email, password } = req.body;
-
-  // Check if email or password is missing
   if (!email || !password) {
     const templateVars = {
       userName: '',
@@ -19,10 +15,8 @@ router.post('/', (req, res) => {
     return res.status(400).render('login', templateVars);
   }
 
-  // Fetch user by email from the database
   getUserByEmail(email)
     .then(user => {
-      // Check if user or password match is not found
       if (!user || !bcrypt.compareSync(password, user.password)) {
         const templateVars = {
           userName: '',
@@ -30,28 +24,22 @@ router.post('/', (req, res) => {
         };
         return res.status(400).render('login', templateVars);
       }
-
-      // Set the user ID in the session and redirect to the quizapp route
       req.session.userId = user.id;
       res.redirect('/quizapp');
     });
 });
 
-// POST route for user registration
+// Registration route
 router.post('/new', (req, res) => {
-  // Extract name, email, and password from request body
-  const { name, email, password } = req.body;
-
-  // Check if name, email, or password is missing
+  const {name, email, password } = req.body;
   if (!name || !email || !password) {
     const templateVars = {
       userName: '',
-      errorMessage: 'Please provide a name, email, and password',
+      errorMessage: 'Please provide a name, email and password',
     };
     return res.status(400).render('register', templateVars);
   }
 
-  // Check if user already exists with the provided email
   getUserByEmail(email)
     .then(user => {
       if (user) {
@@ -62,7 +50,6 @@ router.post('/new', (req, res) => {
         return res.status(400).render('register', templateVars);
       }
 
-      // Add the user to the database and set the user ID in the session
       addUser(name, email, bcrypt.hashSync(password))
         .then(user => {
           req.session.userId = user.id;
@@ -72,5 +59,4 @@ router.post('/new', (req, res) => {
 
 });
 
-// Export the router module
 module.exports = router;

@@ -5,7 +5,6 @@ const db = require('../connection');
  * @param {String} id Id of the user to return
  * @return {Promise} Promise resolves to an object representing the user if the user exists, and null otherwise.
  * */
-
 const getUserById = id => {
   return db.query(`
   SELECT * FROM users
