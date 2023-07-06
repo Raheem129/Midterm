@@ -1,0 +1,21 @@
+@use 'base';
+
+main {
+  margin: calc(base.$navHeight + 3rem) auto 0;
+  height: calc(100vh - base.$navHeight - base.$footHeight);
+  padding: 1em;
+}
+
+
+
+#quiz_sort:hover {
+  transform: scale(1.1);
+}
+
+
+select {
+  background-image: url("../docs/circle-arrow-down-solid.svg");
+  background-repeat: no-repeat;
+  background-size: 4.7%;
+  background-position: 98%;
+}

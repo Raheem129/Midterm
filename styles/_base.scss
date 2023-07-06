@@ -1,0 +1,93 @@
+// Colours
+$mainThemeColour: #ABCDEF;
+$secondaryThemeColour: #FEDCBA;
+$complThemeColour: #CBA987;
+$bgColour: #EFEFEF;
+$correctColour: $complThemeColour;
+$incorrectColour: rgb(224, 45, 5);
+$errorColour: rgba(17, 58, 240, 0.824);
+
+// Sizes
+$navHeight: 8rem;
+$footHeight: 4rem;
+
+// Fonts
+$contentFont: 'Roboto Condensed', sans-serif;
+$headerFont: 'Pacifico', cursive;
+
+// Mixins
+@mixin button-base-style {
+  border: none;
+  border-radius: 6px;
+  margin: 0.5em auto;
+  padding: 1em;
+  color: black;
+  transition: all 0.2s ease-in-out;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+@mixin primary-gradient {
+  background: linear-gradient(45deg, $mainThemeColour, $secondaryThemeColour);
+}
+
+@mixin copy-text-styling {
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) inset;
+  margin-left: 5px;
+  cursor: copy;
+}
+
+body {
+  background-color: $bgColour;
+  font-family: $contentFont;
+  background-color: #ffffff;
+opacity: 0.9;
+background: linear-gradient(135deg, #868cff55 25%, transparent 25%) -38px 0/ 76px 76px, linear-gradient(225deg, #868cff 25%, transparent 25%) -38px 0/ 76px 76px, linear-gradient(315deg, #868cff55 25%, transparent 25%) 0px 0/ 76px 76px, linear-gradient(45deg, #868cff 25%, #ffffff 25%) 0px 0/ 76px 76px;
+
+}
+
+nav {
+  height: $navHeight;
+  background-color: $mainThemeColour;
+  color: white;
+}
+
+footer {
+  height: $footHeight;
+  background-color: #ABCDEF;
+  color: white;
+}
+
+.button-primary {
+  @include button-base-style;
+  @include primary-gradient;
+}
+
+.copy-text {
+  @include copy-text-styling;
+  background-color: $secondaryThemeColour;
+  color: white;
+}
+
+li {
+  color:black;
+}
+
+div.header_attempt > h1 {
+  color: black;
+  font-size: 3.5cdem;
+}
+
+
+div.header_attempt {
+  color:black;
+  font-size: large;
+}
+
+.quiz_container li.correct {
+  background-color: green;
+  color: white;
+  text-shadow: none;
+}

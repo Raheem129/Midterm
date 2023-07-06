@@ -1,115 +1,136 @@
+<!-- <-- PAGE FOR USERS' PERSONAL ACCOUNT INFORMATION -->
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>Quizzy - Your Account</title>
+  <title>Quiz App - Your Account</title>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+
+  <!-- EXTERNAL STYLESHEETS -->
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@700&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+
+   <!--STYLESHEETS -->
+   <link rel="stylesheet" href="/styles/all.css" />
+   <link rel="stylesheet" href="/styles/account_header.css" />
+   <link rel="stylesheet" href="/styles/quiz_card.css" />
+   <link rel="stylesheet" href="/styles/users.css" />
 
   <!-- SCRIPTS-->
+
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/users.js"></script>
   <script defer src="/scripts/copy_link.js"></script>
 
 
+
 </head>
+
 
 <body>
   <header>
     <nav>
-      <p class="user_name">Welcome Back, <%= userName %>!</p>
-      <div class="nav_right">
+        <p class="user_Name"> Welcome Back, <%= userName %>!</p>
+        <div class="nav_right">
         <form action="/api/logout" method="POST" class="logout">
-          <button>Logout</button>
+           <button>Logout</button>
         </form>
         <form action="/quizapp" method="GET" class="home">
-          <button>Back Home<img src="/docs/owl.png" alt="Home"></button>
+          <button>Back Home</button>
         </form>
-      </div>
+       </div>
     </nav>
-  </header>
-  <main>
-    <div class="main_buttons">
-      <button class="quizzes_btn">View My Quizzes</button>
-      <button class="results_btn">View My Quiz Results</button>
-    </div>
-
-    <div class="info_container">
-      <h1>My Quizzes</h1>
-      <div class="info_body">
-        <% if (quizzes !== undefined && quizzes.length) { %>
-        <% for (let quiz of quizzes) { %>
-        <article class="quiz_card my_quiz">
-          <div class="quiz_card_main">
-            <header>
-              <h2><%= quiz.title %></h2>
-              <p>Created <time class="timeago" datetime="<%= quiz.created_at %>"></time></p>
-            </header>
-            <div class="quiz_stats">
-              <button class="questions">Questions: <%= quiz.questions %></button>
-              <button class="attempts">Attempts: <%= (quiz.attempts ? quiz.attempts : 0) %></button>
-              <button class="score">Average Score: <%= (quiz.avg_score ? `${Math.round(Number(quiz.avg_score)*10)/10}/${quiz.questions}`: `N/A`) %></button>
-              <form action="/quizapp/quiz/results/<%= quiz.results_url %>" method="GET">
-                <button class="results">View Detailed Results</button>
-              </form>
-            </div>
-            <div class="quiz_links">
-              <div class="quiz_link">
-                <button class="copy_quiz_btn c_b"><span>Copy Quiz Link&nbsp;</span><input class="copy_input" value="http://localhost:8080/quizapp/quiz/<%= quiz.url %>"></button>
-              </div>
-              <div class="quiz_link">
-                <button class="copy_results_btn c_b"><span>Copy Results Link&nbsp;</span><input class="copy_input" value="http://localhost:8080/quizapp/quiz/results/<%= quiz.results_url %>"></button>
-              </div>
-            </div>
-            <footer>
-              <button class="public" id="<%= quiz.quiz_id %>">Make Quiz <span><%= quiz.is_private ? 'Public' : 'Private' %></span></button>
-              <form action="/api/quiz/delete/<%= quiz.quiz_id %>" method="POST">
-                <button class="delete">Delete Quiz</button>
-              </form>
-            </footer>
-          </div>
-        </article>
-        <% } %>
-        <% } else { %>
-        <article class="my_quiz null" id="null">You have not made any quizzes</article>
-        <% } %>
-
-        <% if (attempts !== undefined && attempts.length) { %>
-        <% for (let attempt of attempts) { %>
-        <article class="quiz_card my_quiz_attempts">
-          <div class="quiz_card_main">
-            <header>
-              <h2><%= attempt.title %></h2>
-              <p>Attempted <time class="timeago" datetime="<%=attempt.attempted_at%>"></time></p>
-            </header>
-            <div class="quiz_stats">
-              <button class="questions">Questions: <%= attempt.questions %></button>
-              <button class="score">Score: <%= attempt.score %> / <%= attempt.questions %></button>
-              <form action="/quizapp/attempt/<%=attempt.attempt_url %>" method="GET">
-                <button class="results">View Your Attempt</button>
-              </form>
-            </div>
-            <div class="quiz_links">
-              <div class="quiz_link">
-                <button class="quiz_link copy_quiz_btn share_attempt c_b"><span>Share Attempt Link&nbsp;</span><input class="quiz_link copy_input" value="http://localhost:8080/quizapp/attempt/<%= attempt.attempt_url %>"></button>
-              </div>
-            </div>
-            <footer>
-              <form action="/quizapp/quiz/<%=attempt.quiz_url %>" method="GET">
-                <button class="quiz_link copy_results_btn get_quiz">Attempt Again</button>
-              </form>
-            </footer>
-          </div>
-        </article>
-        <% } %>
-        <% } else { %>
-        <article class="my_quiz_attempts null" id="null">You have not attempted any quizzes</article>
-        <% } %>
+    </header>
+    <main>
+      <div class="main_buttons">
+        <button class="quizzes_btn">View My Quizzes</button>
+        <button class="results_btn">View My Quiz Attempts</button>
       </div>
-    </div>
-  </main>
+
+      <div class="info_container">
+        <h1>My Quizzes </h1>
+        <div class="info_body">
+
+         <% if (quizzes !== undefined && quizzes.length) { %>
+          <% for (quiz of quizzes) { %>
+          <article class="quiz_card my_quiz">
+            <div class="quiz_card_main">
+              <header>
+                <h2><%= quiz.title %></h2>
+                <p>Created <time class="timeago" datetime="<%= quiz.created_at %>"></time></p>
+              </header>
+              <div class="quiz_stats">
+                <button class="questions"> Questions: <%= quiz.questions %></button>
+                <button class="attempts"> Attempts: <%= (quiz.attempts ? quiz.attempts : 0) %></button>
+                <button class="score"> Average Score: <%= (quiz.avg_score ? `${Math.round(Number(quiz.avg_score)*10)/10}/${quiz.questions}`: `N/A`) %></button>
+                <form action="/quizapp/quiz/results/<%= quiz.results_url %>" method="GET"><button class="results">View Detailed Results</button></form>
+              </div>
+              <div class="quiz_links">
+                <div class="quiz_link">
+                  <button class=" copy_quiz_btn c_b"><span>Copy Quiz Link &nbsp;</span><input class="copy_input" value=http://localhost:8080/quizapp/quiz/<%= quiz.url %>></button>
+                </div>
+                <div class="quiz_link">
+                  <button class="copy_results_btn c_b"><span>Copy Results Link &nbsp;</span><input class="copy_input" value=http://localhost:8080/quizapp/quiz/results/<%= quiz.results_url %>></button>
+                </div>
+              </div>
+              <footer>
+                  <button class="public" id="<%= quiz.quiz_id %>">Make Quiz <span><%= quiz.is_private ? 'Public' : 'Private' %></span></button>
+                <form action="/api/quiz/delete/<%= quiz.quiz_id %>" method="POST">
+                  <button class="delete">Delete Quiz</button></a>
+                </form>
+              </footer>
+            </div>
+          </article>
+          <% } %>
+          <% } else { %>
+            <article class="my_quiz null" id="null">You have not made any quizzes </article>
+          <% } %>
+
+          <% if (attempts !== undefined && attempts.length) { %>
+          <% for (let attempt of attempts) { %>
+
+          <article class="quiz_card my_quiz_attempts">
+            <div class="quiz_card_main">
+              <header>
+                <h2><%= attempt.title %> </h2>
+                <p>Attempted <time class="timeago" datetime="<%=attempt.attempted_at%>"></time></p>
+              </header>
+              <div class="quiz_stats">
+                <button class="questions">Questions: <%= attempt.questions %></button>
+                <button class="score">Score: <%= attempt.score %> / <%= attempt.questions %></button>
+                <form action="/quizapp/attempt/<%=attempt.attempt_url %>" method="GET">
+                 <button class="results">View Your Attempt</button>
+                </form>
+              </div>
+              <div class="quiz_links">
+                <div class="quiz_link">
+                  <button class="quiz_link copy_quiz_btn share_attempt c_b"><span>Share Attempt Link &nbsp;</span><input class="quiz_link copy_input" value=http://localhost:8080/quizapp/attempt/<%= attempt.attempt_url %>></button>
+                </div>
+              </div>
+              <footer>
+                <form action="/quizapp/quiz/<%=attempt.quiz_url %>" method="GET">
+                  <button class="quiz_link copy_results_btn get_quiz">Attempt Again</button>
+                </form>
+              </footer>
+            </div>
+          </article>
+          <% } %>
+          <% } else { %>
+            <article class="my_quiz_attempts null" id="null">You have not attempted any quizzes</article>
+         <% } %>
+        </div>
+
+      </div>
+    </main>
 </body>
 
 </html>

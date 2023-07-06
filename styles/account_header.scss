@@ -1,0 +1,118 @@
+body {
+  font-family: 'Quicksand', sans-serif;
+  background-color: #F4F1EC;
+  color: #333333;
+}
+
+header {
+  background-color: #5969DE;
+  padding: 1rem;
+  text-align: center;
+  color: white;
+}
+
+.nav_right button {
+  background-color: #98a3fa;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.nav_right button:hover {
+  background-color: #6e79cb;
+}
+
+.main_buttons {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.main_buttons button {
+  background-color: #59DEB2;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  margin: 0 1rem;
+}
+
+.main_buttons button:hover {
+  background-color: #3a9f86;
+}
+
+.info_container {
+  background-color: #FFFFFF;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.info_container h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.quiz_card {
+  background-color: #FDFDFD;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.quiz_card h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.quiz_card p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.quiz_card button {
+  background-color: #CBA987;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.quiz_card button:hover {
+  background-color: #A87953;
+}
+
+.quiz_card .copy_quiz_btn,
+.quiz_card .copy_results_btn {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.quiz_card .copy_quiz_btn span,
+.quiz_card .copy_results_btn span {
+  margin-right: 0.5rem;
+}
+
+.quiz_card .copy_input {
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 0.5rem;
+  flex-grow: 1;
+}
+
+.quiz_card footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

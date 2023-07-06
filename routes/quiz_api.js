@@ -3,17 +3,17 @@ const router  = express.Router();
 
 const { postAttempt } = require('../db/queries/post_attempt');
 const { checkUserPermission, changePrivacy, deleteQuiz } = require('../db/queries/edit_quiz');
-const { addQuiz} = require('../db/queries/post_quiz');
+const { addQuiz } = require('../db/queries/post_quiz');
 
-// Route for adding a new quiz to db
+// Route for adding a new quiz to the database
 router.post('/', (req, res) => {
   const userId = req.session.userId;
 
   if (!userId) {
-    res
-      .status(401)
-      .send('Must be logged in to create quiz');
+    res.status(401).send('Must be logged in to create quiz');
   }
+
+  // Parse the request body and retrieve the quiz object
   const quiz = JSON.parse(Object.keys(req.body)[0]);
 
   addQuiz(quiz, userId)
@@ -22,8 +22,8 @@ router.post('/', (req, res) => {
     });
 });
 
-// Route for adding a new attempt to db
-router.post('/attempt',  (req, res) => {
+// Route for adding a new attempt to the database
+router.post('/attempt', (req, res) => {
   const userId = req.session.userId;
   const submission = req.body;
 
@@ -33,43 +33,41 @@ router.post('/attempt',  (req, res) => {
     });
 });
 
-//Route for editing visibility (public vs private) of a quiz
+// Route for editing the visibility (public vs private) of a quiz
 router.post('/visibility/:id', (req, res) => {
   const userId = req.session.userId;
   const request = req.body.visibility;
   const quizId = req.params.id;
 
   checkUserPermission(userId, quizId)
-  .then((permission) => {
-    if (permission) {
-      changePrivacy(quizId, request)
-      .then(() => {
-        res.send('privacy changed');
-      });
-    } else {
-      res
-        .status(401)
-        .send('permission denied');
-    }
-  });
+    .then((permission) => {
+      if (permission) {
+        changePrivacy(quizId, request)
+          .then(() => {
+            res.send('privacy changed');
+          });
+      } else {
+        res.status(401).send('permission denied');
+      }
+    });
 });
 
-//Route for deleting a quiz
+// Route for deleting a quiz
 router.post('/delete/:id', (req, res) => {
   const userId = req.session.userId;
   const quizId = req.params.id;
 
-  checkUserPermission(userId, quizId).then((permission) => {
-    if (permission) {
-      deleteQuiz(quizId).then(() => {
-        res.send('quiz deleted');
-      });
-    } else {
-      res
-        .status(401)
-        .send('permission denied');
-    }
-  });
+  checkUserPermission(userId, quizId)
+    .then((permission) => {
+      if (permission) {
+        deleteQuiz(quizId)
+          .then(() => {
+            res.send('quiz deleted');
+          });
+      } else {
+        res.status(401).send('permission denied');
+      }
+    });
 });
 
 module.exports = router;
