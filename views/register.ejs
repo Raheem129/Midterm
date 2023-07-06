@@ -4,14 +4,14 @@
 <html lang="en">
 
 <head>
-  <title>Quiz App - Register</title>
+  <title>Quizzy - Register</title>
 
   <link href="/docs/owl.png" rel="icon" type="image/x-icon" />
 
 
-  <meta charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- SCRIPTS-->
   <script src="/vendor/jquery-3.0.0.js"></script>
@@ -19,30 +19,20 @@
 
 <body>
   <%- include('partials/_header') %>
-  <main>
-    <h1>Register</h1>
-    <% if (errorMessage) { %>
-      <p class="error"><%= errorMessage %></p>
-    <% } %>
-    <form action="/api/login/new" method="POST">
-      <input
-        type="text"
-        name="name"
-        placeholder="Name"
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-      />
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-      />
-      <button type="submit">Register</button>
-    </form>
-  </main>
+    <main>
+      <h1>Register</h1>
+      <% if (errorMessage) { %>
+        <p class="error">
+          <%= errorMessage %>
+        </p>
+        <% } %>
+          <form action="/api/login/new" method="POST">
+            <input type="text" name="name" placeholder="Name" />
+            <input type="email" name="email" placeholder="Email" />
+            <input type="password" name="password" placeholder="Password" />
+            <button type="submit">Register</button>
+          </form>
+    </main>
 </body>
 
 </html>

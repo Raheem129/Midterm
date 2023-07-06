@@ -60,7 +60,7 @@ const submitQuiz = ($quizContainer) => {
  */
 const displaySubmitError = (message, $element) => {
   $element.text(message);
-  $element.attr('id', 'error');
+  $element.attr('id','error');
   setTimeout(() => {
     clearSubmitError($element);
   }, 3000);
@@ -72,7 +72,7 @@ const displaySubmitError = (message, $element) => {
  * @return {none}
  */
 const clearSubmitError = ($element) => {
-  $element.removeAttr('id', 'error');
-  $element.attr('id', 'quiz_submit');
+  $element.removeAttr('id','error');
+  $element.attr('id','quiz_submit');
   $element.html('Submit');
 };

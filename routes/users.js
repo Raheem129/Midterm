@@ -1,12 +1,12 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const { getUserById } = require('../db/queries/users');
 
 // Separated Routes
-const quizRoutes = require('./users_quiz');
-const accountRoute = require('./users_account');
-const attemptRoute = require('./attempt_user');
-const loginRoutes = require('./users_login');
+const { quizRoutes } = require('./users_quiz');
+const { accountRoute } = require('./users_account');
+const { attemptRoute } = require('./attempt_user');
+const { loginRoutes } = require('./users_login');
 
 // Mount all resource routes
 router.use('/quiz', quizRoutes);
@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
   const userId = req.session.userId;
 
   getUserById(userId).then(user => {
-    const templateVars = {userName: (!user ? '' : user.name)};
+    const templateVars = { userName: (!user ? '' : user.name) };
     res.render('index', templateVars);
   });
 });
