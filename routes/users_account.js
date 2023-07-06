@@ -1,14 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-<<<<<<< HEAD
-//This will display the users account page with the quizzes and attempts.
-const { getAccountQuizzes, getAccountAttempts } = require('../db/queries/account_page');
-const { getUserById } = require('../db/queries/users');
-=======
 const { getUserById } = require('../db/queries/users');
 const { getAccountQuizzes, getAccountAttempts } = require('../db/queries/account_page');
->>>>>>> 8353fe4ed58f8ecd2a1bd7eff9887487401bf53e
 
 // User account page
 router.get('/', (req, res) => {
@@ -17,12 +11,6 @@ router.get('/', (req, res) => {
   if (!userId) {
     return res.redirect('/quizapp/login');
   }
-<<<<<<< HEAD
-  Promise.all([getAccountAttempts(userId), getAccountQuizzes(userId), getUserById(userId),])
-
-    .then(([quizzes, attempts, user]) => {
-      const templateVars = { quizzes, attempts, userName: user.name };
-=======
 
   Promise.all([
     getAccountAttempts(userId),
@@ -35,7 +23,6 @@ router.get('/', (req, res) => {
         quizzes,
         userName: user.name
       };
->>>>>>> 8353fe4ed58f8ecd2a1bd7eff9887487401bf53e
       res.render('user', templateVars);
     });
 });
