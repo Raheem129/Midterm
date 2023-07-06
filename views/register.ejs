@@ -1,37 +1,48 @@
+<!-- Registration Page -->
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title> Registration - Quizzy </title>
+  <title>Quiz App - Register</title>
+
+  <link href="/docs/owl.png" rel="icon" type="image/x-icon" />
+
+
   <meta charset="UTF-8" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <meta name="viewport" content="width=device-width, initial-scale=1.0" >
-  <link rel="stylesheet" href="/styles/register.css">
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- SCRIPTS-->
+  <script src="/vendor/jquery-3.0.0.js"></script>
 </head>
+
 <body>
   <%- include('partials/_header') %>
-  <h1> Registration - Quizzy </h1>
   <main>
-    <h3>Register a New User</h3>
-
-    <form action="/register/Register" method="POST">
-
-      <input type="name" placeholder="Name" name="name" />
-
-      <input type="email" placeholder="Email" name="email" />
-
-      <input type="password" placeholder="Password" name="password" />
-
-      <span><small>Already have an account? <a href="/login"> Login</a></span></small>
-
-      <button type="submit" class=" btn btn-info">Register</button>
-
+    <h1>Register</h1>
+    <% if (errorMessage) { %>
+      <p class="error"><%= errorMessage %></p>
+    <% } %>
+    <form action="/api/login/new" method="POST">
+      <input
+        type="text"
+        name="name"
+        placeholder="Name"
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+      />
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+      />
+      <button type="submit">Register</button>
     </form>
-
-
-
-
   </main>
 </body>
+
 </html>

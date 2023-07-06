@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, IE=edge" >
-
   <title>Quizzy - Quiz</title>
 
     <!-- Scripts -->
@@ -12,42 +12,57 @@
 
   </head>
   <!--This page shows the quiz and will alow you to take it.-->>
-  <body>
+<body>
+>>>>>>> b78bf3ce9f34652aa4a285fc7b5bf5ac6a4f33a9
   <%- include('partials/_header') %>
     <main>
 
-    <div class="quiz_details">
-      <h1><%= quiz.title %></h1>
-      <p class="author">By <%= quiz.author%></p>
-      <p class="description"><%= quiz.description %></p>
-    </div>
+      <div class="quiz_details">
+        <h1>
+          <%= quiz.title %>
+        </h1>
+        <p class="author">By <%= quiz.author%>
+        </p>
+        <p class="description">
+          <%= quiz.description %>
+        </p>
+      </div>
 
-    <div class="quiz_container" data-id="<%= quiz.id %>">
+      <div class="quiz_container" data-id="<%= quiz.id %>">
 
-      <% for (let question in quiz.questions) { %>
+        <% for (let question in quiz.questions) { %>
 
         <article class="question_card">
-          
+
           <header><p><%= question %>. <%= quiz.questions[question].text %></p></header>
-          
-          <ul> 
+
+          <ul>
             <% for (let answer of quiz.questions[question].answers) { %>
 
-              <li>
-                <input type="radio" name="<%= question %>" data-id="<%= answer.id %>">
-                <%= answer.text %>
-              </li>
+            <header>
+              <p>
+                <%= question %>. <%= quiz.questions[question].text %>
+              </p>
+            </header>
 
-            <% } %>
-          </ul>
+            <ul>
+              <% for (let answer of quiz.questions[question].answers) { %>
 
-        </article>
-      <% } %>
-    </div>
+                <li>
+                  <input type="radio" name="<%= question %>" data-id="<%= answer.id %>">
+                  <%= answer.text %>
+                </li>
 
-    <div class="footer_quiz">
-      <button id="submit_quiz" class="submit_quiz"> Submit </button>
-    </div>
+                <% } %>
+            </ul>
+
+          </article>
+          <% } %>
+      </div>
+
+      <div class="footer_quiz">
+        <button id="submit_quiz" class="submit_quiz"> Submit </button>
+      </div>
 
     </main>
   </body>

@@ -1,5 +1,5 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 
 const { getUserById } = require('../db/queries/users');
 const { getQuizResults } = require('../db/queries/get_quiz_stats');
@@ -14,13 +14,13 @@ router.get('/new', (req, res) => {
   }
 
   getUserById(userId).then(user => {
-    const templateVars = {userName: user.name};
+    const templateVars = { userName: user.name };
     res.render('quiz_form', templateVars);
   });
 });
 
 // Page for aggregate results of single quiz
-router.get('/results/:url',  (req, res) => {
+router.get('/results/:url', (req, res) => {
   const userId = req.session.userId;
   const templateVars = {};
   const url = req.params.url;
@@ -36,7 +36,7 @@ router.get('/results/:url',  (req, res) => {
       templateVars.results = results;
       return results.quizId;
     })
-    .then(quizId => getQuiz({id: quizId}))
+    .then(quizId => getQuiz({ id: quizId }))
     .then(quiz => {
       templateVars.quiz = quiz;
       res.render('quiz_stats', templateVars);
@@ -44,7 +44,7 @@ router.get('/results/:url',  (req, res) => {
 });
 
 // Page for taking a quiz
-router.get('/:url',  (req, res) => {
+router.get('/:url', (req, res) => {
   const userId = req.session.userId;
 
   Promise.all([

@@ -12,52 +12,62 @@
 
   </head>
 <!--this will show the attempt of the quiz that is taken.-->>
-  <body>
+
+<body>
   <%- include('partials/_header') %>
-   <main>
-    <div class="header_attempt">
-      <h1><%= attempt.title %></h1>
+    <main>
+      <div class="header_attempt">
+        <h1>
+          <%= attempt.title %>
+        </h1>
 
-      <p class="author">By <%= attempt.author %></p>
-      <p class="description"><%= attempt.description %></p>
+        <p class="author">By <%= attempt.author %>
+        </p>
+        <p class="description">
+          <%= attempt.description %>
+        </p>
 
-      <div class="results_attempt">
+        <div class="results_attempt">
 
-        <p class="attempter">Attempt by <%= attempt.attempter || 'anonymous' %></p>
-        <p class="score">Score: <%= attempt.score %> / <%= attempt.total %></p>
+          <p class="attempter">Attempt by <%= attempt.attempter || 'anonymous' %>
+          </p>
+          <p class="score">Score: <%= attempt.score %> / <%= attempt.total %>
+          </p>
 
+        </div>
       </div>
-    </div>
 
-    <div class="quiz_container">
-      <% for (let question in attempt.questions) { %>
+      <div class="quiz_container">
+        <% for (let question in attempt.questions) { %>
 
-      <article class="question_card">
-      <header> <p><%= parseInt(question) + 1 %>. <%= attempt.questions[question].text %></p> </header>
-      <ul>
-        <% for (let answer of attempt.questions[question].answers) { %>
-          <li class="<%= (answer.answered ? (answer.isCorrect ? 'correct' : 'incorrect') : '') %>">
-            <%= answer.text %>
-          </li>
-        <% } %>
-      </ul>
-    </article>
+          <article class="question_card">
+            <header>
+              <p>
+                <%= parseInt(question) + 1 %>. <%= attempt.questions[question].text %>
+              </p>
+            </header>
+            <ul>
+              <% for (let answer of attempt.questions[question].answers) { %>
+                <li class="<%= (answer.answered ? (answer.isCorrect ? 'correct' : 'incorrect') : '') %>">
+                  <%= answer.text %>
+                </li>
+                <% } %>
+            </ul>
+          </article>
 
-  <% } %>
-</div>
+          <% } %>
+      </div>
 
-<div class="attempt_foot">
+      <div class="attempt_foot">
 
-  <a href="/quizzy/quiz/<%= attempt.quiz_url %>">
-    <button id="quiz_try">Try this quiz!</button>
-  </a>
+        <a href="/quizzy/quiz/<%= attempt.quiz_url %>">
+          <button id="quiz_try">Try this quiz!</button>
+        </a>
 
-  <button class="c_b">
-    <span>Copy Attempt Link</span>&nbsp; &nbsp;<input class="copy_input" 
-    value="http://localhost:8080/quizzy/attempt/<%= attempt.url %>">
-  </button>
-
-</div>
+    <button class="c_b">
+      <span>Copy Attempt Link</span>&nbsp; &nbsp;<input class="copy_input"
+       value="http://localhost:8080/quizzy/attempt/<%= attempt.url %>">
+    </button>
 
    </main>
   </body>
