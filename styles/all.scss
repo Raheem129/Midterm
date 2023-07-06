@@ -1,0 +1,17 @@
+@use 'base';
+
+body,
+html {
+  margin: 0;
+  background: base.$bgColour;
+  font-family: base.$contentFont;
+}
+
+h2,
+p {
+  margin: 0;
+}
+
+button:hover {
+  cursor: pointer;
+}

@@ -1,0 +1,85 @@
+@use 'base';
+
+main {
+  width: 80%;
+  margin: base.$navHeight auto 0;
+  height: calc(100vh - base.$navHeight - base.$footHeight);
+  padding: 1em;
+  font-weight: normal;
+  color: base.$mainThemeColour;
+  text-shadow: 0.5px 0.5px 3px base.$secondaryThemeColour;
+
+  #error {
+    color: white;
+    background: none;
+    background-color: base.$errorColour;
+    margin: 0.7rem auto;
+    padding: 1rem;
+  }
+
+}
+
+.quiz_details {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+
+  .description {
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+}
+
+h1 {
+  margin: 0.1em 0 0.2em 0;
+  padding: 0.1em 1.5em;
+  color: base.$mainThemeColour;
+  border-radius: 10px;
+  box-shadow: 3px 3px 8px #c9cae2 inset;
+
+}
+
+.description,
+.author {
+  margin-bottom: 0.5em;
+}
+
+.quiz_submit {
+  @include base.button-base-style;
+  background: linear-gradient(50deg, base.$mainThemeColour 60%, base.$secondaryThemeColour 80%, base.$mainThemeColour 90%);
+}
+
+#quiz_submit:hover {
+  transform: scale(1.1);
+}
+
+.quiz_footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
+.quiz_container {
+  width: 100%;
+  height: calc(100% - 6em);
+  padding: 1em;
+}
+
+.question_card {
+  li {
+    input:hover {
+      cursor: pointer;
+    }
+
+    input:checked {
+      accent-color: base.$mainThemeColour;
+    }
+  }
+
+  li:hover {
+    cursor: pointer;
+    background-color: base.$secondaryThemeColour;
+    color: white;
+  }
+}

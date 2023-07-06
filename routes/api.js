@@ -1,6 +1,6 @@
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const { getQuizzes } = require('../db/queries/get_quizzes');
 
 // Separated Routes

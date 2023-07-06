@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { postAttempt } = require('../db/queries/post_attempt');
 const { checkUserPermission, changePrivacy, deleteQuiz } = require('../db/queries/edit_quiz');
-const { addQuiz} = require('../db/queries/post_quiz');
+const { addQuiz } = require('../db/queries/post_quiz');
 
 // Route for adding a new quiz to db
 router.post('/', (req, res) => {
@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
 });
 
 // Route for adding a new attempt to db
-router.post('/attempt',  (req, res) => {
+router.post('/attempt', (req, res) => {
   const userId = req.session.userId;
   const submission = req.body;
 
@@ -39,18 +39,18 @@ router.post('/visibility/:id', (req, res) => {
   const quizId = req.params.id;
 
   checkUserPermission(userId, quizId)
-  .then((permission) => {
-    if (permission) {
-      changePrivacy(quizId, request)
-      .then(() => {
-        res.send('privacy changed');
-      });
-    } else {
-      res
-        .status(401)
-        .send('permission denied');
-    }
-  });
+    .then((permission) => {
+      if (permission) {
+        changePrivacy(quizId, request)
+          .then(() => {
+            res.send('privacy changed');
+          });
+      } else {
+        res
+          .status(401)
+          .send('permission denied');
+      }
+    });
 });
 
 //Route for deleting a quiz

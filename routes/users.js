@@ -3,10 +3,10 @@ const router = express.Router();
 const { getUserById } = require('../db/queries/users');
 
 // Separated Routes
-const { quizRoutes } = require('./users_quiz');
-const { accountRoute } = require('./users_account');
-const { attemptRoute } = require('./attempt_user');
-const { loginRoutes } = require('./users_login');
+const quizRoutes = require('./users_quiz');
+const accountRoute = require('./users_account');
+const attemptRoute = require('./attempt_user');
+const loginRoutes = require('./users_login');
 
 // Mount all resource routes
 router.use('/quiz', quizRoutes);

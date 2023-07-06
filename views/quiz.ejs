@@ -2,57 +2,67 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Quizzy - Quiz</title>
 
-    <meta charset="UTF-8" >
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+<head>
+  <title>Quizzy - Quiz</title>
 
-    <!-- EXTERNAL STYLESHEETS -->
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@700&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- OUR STYLESHEETS -->
+  <link rel="stylesheet" href="/styles/all.css" />
+  <link rel="stylesheet" href="/styles/header.css" />
+  <link rel="stylesheet" href="/styles/footer.css" />
+  <link rel="stylesheet" href="/styles/quiz_container.css" />
+  <link rel="stylesheet" href="/styles/question_card.css" />
+  <link rel="stylesheet" href="/styles/quiz.css" />
 
-    <!-- SCRIPTS-->
+  <!-- SCRIPTS-->
 
-    <script src="/vendor/jquery-3.0.0.js"></script>
-    <script defer src="/scripts/quiz.js"></script>
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/quiz.js"></script>
 
-  </head>
+</head>
+
 <body>
   <%- include('partials/_header') %>
 
-  <main>
-    <div class="quiz_details">
-      <h1><%= quiz.title %></h1>
-      <p class="author">By <%= quiz.author%></p>
-      <p class ="description"><%= quiz.description %></p>
-    </div>
-    <div class="quiz_container" data-id="<%= quiz.id %>">
-      <% for (question in quiz.questions) { %>
-        <article class = question_card>
-          <header>
-            <p><%= question %>. <%= quiz.questions[question].text %></p>
-          </header>
-          <ul>
-            <% for (answer of quiz.questions[question].answers) { %>
-              <li>
-                <input type="radio" name="<%= question %>" data-id="<%= answer.id %>">
-                <%= answer.text %>
-              </li>
-            <% } %>
-          </ul>
-        </article>
-      <% } %>
-    </div>
-    <div class="quiz_footer">
-      <button id="quiz_submit" class="quiz_submit">Submit</button>
-    </div>
-  </main>
+    <main>
+      <div class="quiz_details">
+        <h1>
+          <%= quiz.title %>
+        </h1>
+        <p class="author">By <%= quiz.author%>
+        </p>
+        <p class="description">
+          <%= quiz.description %>
+        </p>
+      </div>
+      <div class="quiz_container" data-id="<%= quiz.id %>">
+        <% for (question in quiz.questions) { %>
+          <article class=question_card>
+            <header>
+              <p>
+                <%= question %>. <%= quiz.questions[question].text %>
+              </p>
+            </header>
+            <ul>
+              <% for (answer of quiz.questions[question].answers) { %>
+                <li>
+                  <input type="radio" name="<%= question %>" data-id="<%= answer.id %>">
+                  <%= answer.text %>
+                </li>
+                <% } %>
+            </ul>
+          </article>
+          <% } %>
+      </div>
+      <div class="quiz_footer">
+        <button id="quiz_submit" class="quiz_submit">Submit</button>
+      </div>
+    </main>
 
 </body>
+
 </html>
