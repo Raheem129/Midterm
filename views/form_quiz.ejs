@@ -1,59 +1,70 @@
+<!-- PAGE WITH THE FORM TO MAKE / SUBMIT A NEW QUIZ -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, IE=edge" >
+  <title>Quizzy - New Quiz</title>
 
-  <Title>Quizzy - New Quiz</Title>
+  <meta charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
 
-     <!-- Scripts-->
-    <script src="/vendor/jquery-3.0.0.js"></script>
-    <script defer src="/scripts/copy_link.js"></script>
-    <script defer src="/scripts/quiz_form.js"></script>
+
+  <!-- SCRIPTS-->
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/form_quiz.js"></script>
+  <script defer src="/scripts/copy_link.js"></script>
 
 </head>
 <body>
   <%- include('partials/_header') %>
   <main>
 
-    <h1>Create Your New Quiz</h1>
-  <form id="form_quiz" action="/api" method="POST">
-    <fieldset class="details_quiz">
-      <legend>Quiz Details</legend>
+    <h1>Your New Quiz</h1>
 
-    <div class="question_form_main">
-      <label for="quiz_title">Quiz Title</label>
-      <input id="quiz_title" type="text" name="quiz_title"/>
+    <form action="/api" method="POST" id="form_quiz">
+      <fieldset class="quiz_details">
+        <legend>Your Quiz Details</legend>
 
-      <label for="description_quiz">Quiz Description</label>
-      <textarea id="description_quiz" name="description_quiz" rows="3"></textarea>
+        <div class="question_form_main">
 
-      <label for="quiz_private">Quiz Visibility</label>
-      <p>When you opt for the "public" setting, your quiz will be made visible to all users. On the other hand,
-        if you pick "private" setting, only those who possess the quiz link will have the ability to view and access the quiz. </p>
+        <label for="quiz_title">Your Quiz Title</label>
+        <input type="text" name="quiz_title" id="quiz_title"/>
 
-      <div class="public_private">
-        <div>
-          <input type="radio" id="public" name="public_quiz" value="FALSE">
-          <label for="public">Public</label>
+        <label for="quiz_description">Quiz Description</label>
+        <textarea name="quiz_description" id="quiz_description" rows="3"></textarea>
+
+        <label for="quiz_private">Public Quiz?</label>
+        <p>If set to public, your quiz will be visible to all users. If set to private, only those who possess your quiz link will be able to view your quiz.</p>
+        <div class="public_private">
+          <div>
+            <label for="public">Public</label>
+            <input type="radio" name="quiz_private" value="FALSE" id="public">
+          </div>
+          <div>
+            <label for="private">Private</label>
+            <input type="radio" name="quiz_private" value="TRUE" id="private">
+          </div>
         </div>
-        <div>
-          <input type="radio" id="private" name="private_quiz" value="TRUE">
-          <label for="private">Private</label>
+
         </div>
+
+      </fieldset>
+
+          <!-- JQUERY APPENDS THE QUESTIONS HERE -->
+      <div id="form_questions">
       </div>
-    </div>
-  </fieldset>
 
-  <div id="questions_form"></div>
+      <div id="form_foot">
+        <button type="submit" id="submit">Create Quiz!</button>
+        <button class="add_question">Add Question</button>
+      </div>
 
-  <div id="footer_form">
-    <button id="submit" type="submit">Create Quiz!</button>
-    <button class="add_question">Add Question</button>
+    </form>
 
-  </div>
-
-   </form>
   </main>
+
 </body>
+
 </html>

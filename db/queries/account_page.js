@@ -1,13 +1,13 @@
 const db = require('../connection');
 
 /**
- * Retrieves all quizzes belonging to a user, along with the necessary information to render the quiz list on the account page.
- * @param {String/Number} userId User ID
- * @return {none}
- */
+   * Gets all quizzes having user_id = userId, with all info require to render quiz list on account page.
+   * @param {Atring/Numer} userId
+   * @return {none}
+   */
 const getAccountQuizzes = (userId) => {
   const query = `
-  SELECT quizzes.id AS quiz_id, title, quizzes.url, quizzes.results_url, created_at, is_private,
+  SELECT quizzes.id AS quiz_id, title, quizzes.url,quizzes.results_url, created_at, is_private,
     AVG(score) AS avg_score,
     COUNT(DISTINCT attempts.id) AS attempts,
     COUNT(DISTINCT questions.id) AS questions
@@ -40,17 +40,12 @@ const getAccountQuizzes = (userId) => {
     .catch(error => console.log(error));
 };
 
-/**
- * Retrieves all attempts made by a user.
- * @param {String/Number} userId User ID
- * @return {none}
- */
 const getAccountAttempts = userId => {
   const query = `
     SELECT attempts.url AS attempt_url, attempted_at,
       quizzes.url AS quiz_url, quizzes.title,
-      COUNT(DISTINCT questions.id) AS questions,
-      COUNT(DISTINCT attempt_answers.id) FILTER (WHERE "is_correct") AS score
+      COUNT (DISTINCT questions.id) AS questions,
+      COUNT (DISTINCT attempt_answers.id) filter (where "is_correct") AS score
     FROM attempts
     JOIN quizzes
       ON quizzes.id = attempts.quiz_id
@@ -73,4 +68,5 @@ const getAccountAttempts = userId => {
     .catch(error => console.log(error));
 };
 
-module.exports = { getAccountQuizzes, getAccountAttempts };
+module.exports =  { getAccountQuizzes, getAccountAttempts };
+

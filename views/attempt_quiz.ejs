@@ -10,7 +10,11 @@
     <script src="/vendor/jquery-3.0.0.js"></script>
     <script defer src="/scripts/copy_link.js"></script>
 
-  </head>
+    <script src="/vendor/jquery-3.0.0.js"></script>
+    <script defer src="/scripts/copy_link.js"></script>
+
+
+</head>
 <!--this will show the attempt of the quiz that is taken.-->>
 
 <body>
@@ -64,11 +68,14 @@
           <button id="quiz_try">Try this quiz!</button>
         </a>
 
-    <button class="c_b">
-      <span>Copy Attempt Link</span>&nbsp; &nbsp;<input class="copy_input"
-       value="http://localhost:8080/quizzy/attempt/<%= attempt.url %>">
-    </button>
+        <button class="c_b">
+          <span>Copy Attempt Link</span>&nbsp; &nbsp;<input class="copy_input"
+            value="http://localhost:8080/quizapp/attempt/<%= attempt.url %>">
+        </button>
 
-   </main>
-  </body>
+      </div>
+
+    </main>
+</body>
+
 </html>
