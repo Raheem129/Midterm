@@ -23,25 +23,25 @@ main {
   display: flex;
   flex-flow: column wrap;
   align-items: center;
-
   .description {
     font-style: italic;
     margin-bottom: 1rem;
+    color:black;
   }
 }
 
 h1 {
   margin: 0.1em 0 0.2em 0;
   padding: 0.1em 1.5em;
-  color: base.$mainThemeColour;
+  color: black;
   border-radius: 10px;
   box-shadow: 3px 3px 8px #c9cae2 inset;
 
 }
 
-.description,
-.author {
+.description, .author {
   margin-bottom: 0.5em;
+  color:black;
 }
 
 .quiz_submit {
@@ -71,9 +71,8 @@ h1 {
     input:hover {
       cursor: pointer;
     }
-
     input:checked {
-      accent-color: base.$mainThemeColour;
+      accent-color: black;
     }
   }
 

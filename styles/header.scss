@@ -34,6 +34,7 @@ nav {
 
     .new_quiz {
       padding: 1.5em;
+      margin: auto;
     }
 
     .left {
@@ -46,11 +47,11 @@ nav {
     }
 
     .logout {
-      background-color: base.$errorColour;
+      background-color:#ABCDEF
     }
 
     .user {
-      background-color: #50c8a0;
+      background-color: #ABCDEF
     }
 
     .logo {
@@ -65,13 +66,13 @@ nav {
       gap: 10px;
       align-items: center;
       padding: 0.1em 2em 0.5em 2em;
-      font-size: 2em;
+      font-size: 3.5em;
       border-top-left-radius: 0px;
       border-top-right-radius: 0px;
       margin-top: 0em;
       padding: auto, inherit;
       font-family: base.$headerFont;
-      font-size: 2.5em;
+      font-size: 3.5cdem;
       font-weight: 700;
       letter-spacing: 1px;
     }
@@ -92,7 +93,7 @@ nav {
       height: 60px;
     }
 
-    .left_nav {
+     .left_nav {
       display: flex;
       flex-flow: column wrap;
       width: 18%;

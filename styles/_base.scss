@@ -1,42 +1,93 @@
-//this file is for defining scss variables to use in the other scss files
-
-//colours
-$mainThemeColour: #5969DE;
-$secondaryThemeColour: #98a3fa;
-$complThemeColour: #59DEB2;
-$bgColour: #f4f1ec;
+// Colours
+$mainThemeColour: #ABCDEF;
+$secondaryThemeColour: #FEDCBA;
+$complThemeColour: #CBA987;
+$bgColour: #EFEFEF;
 $correctColour: $complThemeColour;
-$incorrectColour: rgb(231, 136, 136);
-$errorColour: rgba(240, 58, 17, 0.824);
+$incorrectColour: rgb(224, 45, 5);
+$errorColour: rgba(17, 58, 240, 0.824);
 
-//sizes
-$navHeight: 10rem;
-$footHeight: 6rem;
+// Sizes
+$navHeight: 8rem;
+$footHeight: 4rem;
 
-//fonts
-$contentFont: 'Quicksand', sans-serif;
-$headerFont: 'Cormorant Unicase', serif;
+// Fonts
+$contentFont: 'Roboto Condensed', sans-serif;
+$headerFont: 'Pacifico', cursive;
 
-//mixins
+// Mixins
 @mixin button-base-style {
   border: none;
-  border-radius: 10px;
-  margin: 0.7em auto;
+  border-radius: 6px;
+  margin: 0.5em auto;
   padding: 1em;
-  color: white;
+  color: black;
   transition: all 0.2s ease-in-out;
   font-weight: bold;
-  box-shadow: 2px 2px 4px #31313b7f;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 @mixin primary-gradient {
-  background: linear-gradient(50deg, $mainThemeColour 60%, $secondaryThemeColour 80%, $mainThemeColour 90%);
+  background: linear-gradient(45deg, $mainThemeColour, $secondaryThemeColour);
 }
 
 @mixin copy-text-styling {
   border: none;
   border-radius: 4px;
-  box-shadow: 2px 2px 4px #31313b7f inset;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) inset;
   margin-left: 5px;
   cursor: copy;
+}
+
+body {
+  background-color: $bgColour;
+  font-family: $contentFont;
+  background-color: #ffffff;
+opacity: 0.9;
+background: linear-gradient(135deg, #868cff55 25%, transparent 25%) -38px 0/ 76px 76px, linear-gradient(225deg, #868cff 25%, transparent 25%) -38px 0/ 76px 76px, linear-gradient(315deg, #868cff55 25%, transparent 25%) 0px 0/ 76px 76px, linear-gradient(45deg, #868cff 25%, #ffffff 25%) 0px 0/ 76px 76px;
+
+}
+
+nav {
+  height: $navHeight;
+  background-color: $mainThemeColour;
+  color: white;
+}
+
+footer {
+  height: $footHeight;
+  background-color: #ABCDEF;
+  color: white;
+}
+
+.button-primary {
+  @include button-base-style;
+  @include primary-gradient;
+}
+
+.copy-text {
+  @include copy-text-styling;
+  background-color: $secondaryThemeColour;
+  color: white;
+}
+
+li {
+  color:black;
+}
+
+div.header_attempt > h1 {
+  color: black;
+  font-size: 3.5cdem;
+}
+
+
+div.header_attempt {
+  color:black;
+  font-size: large;
+}
+
+.quiz_container li.correct {
+  background-color: green;
+  color: white;
+  text-shadow: none;
 }

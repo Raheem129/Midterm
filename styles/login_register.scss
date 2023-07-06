@@ -10,7 +10,7 @@ main {
 button {
   border: none;
   border-radius: 6px;
-  color: rgb(145, 122, 122);
+  color: white;
   background-color: base.$mainThemeColour;
   margin: 1em auto;
   padding: 1em;
@@ -20,7 +20,6 @@ form {
   display: flex;
   flex-flow: column;
   max-width: 20em;
-
   input {
     margin-bottom: 0.25em;
   }

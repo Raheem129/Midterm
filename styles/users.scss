@@ -1,5 +1,4 @@
 @use 'base';
-
 main {
   padding-top: 10vh;
 }
@@ -13,14 +12,14 @@ main {
   gap: 3em;
 
   button {
-    border: none;
-    border-radius: 6px;
-    color: white;
-    font-weight: normal;
-    transition: all 0.2s ease-in-out;
-    box-shadow: 2px 2px 4px #31313b7f;
-    padding: 0.7em;
-    font-size: 1.15em;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-weight: normal;
+      transition: all 0.2s ease-in-out;
+      box-shadow: 2px 2px 4px #31313b7f;
+      padding: 0.7em;
+      font-size: 1.15em;
   }
 
   button:hover {
@@ -34,7 +33,6 @@ main {
   .results_btn {
     background: linear-gradient(50deg, base.$secondaryThemeColour 0%, base.$mainThemeColour 70%, base.$secondaryThemeColour 95%);
   }
-
   .selected {
     background: linear-gradient(50deg, base.$complThemeColour 60%, #b1cec4 80%, base.$complThemeColour 90%);
   }
@@ -53,7 +51,6 @@ main {
   border-radius: 8px;
   box-shadow: 2px 2px 4px #d7d8f0;
   transition: all 0.2s ease-in-out;
-
   h1 {
     width: 100%;
     font-size: 1.5rem;
@@ -61,13 +58,12 @@ main {
     text-align: center;
     padding: 0.5em 0;
     background-color: base.$mainThemeColour;
-    box-shadow: 0px 4px 6px #c9cae2;
+    box-shadow: 0px 4px 6px black;
     color: white;
     border-radius: inherit;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
   }
-
   .info_body {
     display: flex;
     flex-flow: column;
@@ -77,7 +73,6 @@ main {
     height: calc(100vh - base.$navHeight - base.$footHeight);
     padding: 1em 1em 0 1em;
   }
-
   .info_body::-webkit-scrollbar {
     display: none;
   }
@@ -93,5 +88,5 @@ main {
   margin-top: 15%;
   font-size: 2em;
   font-weight: bolder;
-  color: #5969de56;
+  color:#ABCDEF
 }

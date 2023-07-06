@@ -1,31 +1,20 @@
 <header>
   <nav>
-    <ul>
-      <div class="left_nav">
-        <% if (userName) { %>
-          <a href="/quizapp/account">
-            <li class="user left"><span id="user_name"></span>'s Account</li>
-          </a>
-          <form action="/api/logout" method="POST">
-            <button type="submit">
-              <li class="logout left">Logout</li>
-            </button>
-          </form>
-          <% } else { %>
-            <a href="/quizapp/login">
-              <li class="login left">Login</li>
-            </a>
-            <a href="/quizapp/login/new">
-              <li class="register left">Register</li>
-            </a>
-            <% } %>
-      </div>
-      <a href="/quizapp">
-        <li class="logo">Quizzy<img src=""></li>
-      </a>
-      <a href="/quizapp/quiz/new">
-        <li class="new_quiz">New Quiz</li>
-      </a>
-    </ul>
-  </nav>
-</header>
+   <ul>
+    <div class="left_nav">
+      <% if (userName) { %>
+        <a href="/quizapp/account"><li class="user left"><span id="user_name"><%= userName %></span>'s Account</li></a>
+      <form action="/api/logout" method="POST">
+        <button type="submit"><li class="logout left">Logout</li></button>
+      </form>
+      <% } else { %>
+        <a href="/quizapp/login"><li class="login left">Login</li></a>
+       <a href="/quizapp/login/new"><li class="register left">Register</li></a>
+       <% } %>
+       </div>
+       <a href="/quizapp"><li class="logo">Quizzy</li></a>
+       <a href="/quizapp/quiz/new"><li class="new_quiz">New Quiz</li></a>
+     </ul>
+   </nav>
+   </header>
+

@@ -19,7 +19,6 @@ header {
   display: flex;
   flex-flow: column wrap;
   align-items: center;
-
   .description {
     font-style: italic;
     margin-bottom: 0.5rem;
@@ -35,16 +34,12 @@ h1 {
   box-shadow: 3px 3px 8px #c9cae2 inset;
 }
 
-#quiz_try,
-.view_attempt,
-.c_b {
+#quiz_try, .view_attempt, .c_b {
   @include base.button-base-style;
-  background-color: base.$mainThemeColour;
+  background-color: black;
 }
 
-#quiz_try:hover,
-.view_attempt:hover,
-.c_b:hover {
+#quiz_try:hover, .view_attempt:hover, .c_b:hover {
   transform: scale(1.1);
 }
 
@@ -76,7 +71,7 @@ h1 {
 }
 
 .result_summary {
-  display: flex;
+  display:flex;
   flex-flow: column wrap;
   align-items: center;
   gap: 1px;
@@ -115,7 +110,7 @@ h1 {
 }
 
 li.correct {
-  background-color: base.$correctColour;
+  background-color: blue($color: #afdeef)
 }
 
 .attempt_card {
@@ -156,8 +151,7 @@ li.correct {
     flex-flow: column;
   }
 
-  .by_answer,
-  .by_attempt {
+  .by_answer, .by_attempt {
     height: 50%;
     width: 100%;
     margin: 0.25em

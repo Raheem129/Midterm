@@ -10,15 +10,15 @@ router.get('/:url',  (req, res) => {
   const url = req.params.url;
 
   Promise.all([
-    getUserById(userId),
-    getAttempt({ url }),
+    getUserById(userId), // Fetch the user by their ID
+    getAttempt({ url })  // Fetch the attempt by its URL
   ])
     .then(([user, attempt]) => {
       const templateVars = {
         attempt,
-        userName: (!user ? '' : user.name)
+        userName: (!user ? '' : user.name) // Set the userName based on the user's name
       };
-      res.render('attempt_quiz', templateVars);
+      res.render('attempt_quiz', templateVars); // Render the attempt_quiz template with the provided templateVars
     })
     .catch(error => console.log(error));
 });
